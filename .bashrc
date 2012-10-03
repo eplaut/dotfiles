@@ -32,8 +32,12 @@ GREEN="\[\033[0;32m\]"
 #PROMPT_COMMAND='history -a ; hcmnt -lty ~/.bash_history.full' # ; history -a'
 PROMPT_COMMAND='history -a'
 
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUPSTREAM="verbose"
 command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")'
-export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${GITPS1}${CYAN}\\\$${GRAY} "
+export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${CYAN}${GITPS1}\\\$${GRAY} "
 
 export LS_OPTIONS='--color=auto -F'
 export GREP_OPTIONS='--color=auto'
