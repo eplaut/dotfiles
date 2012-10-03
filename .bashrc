@@ -1,12 +1,14 @@
-# .bashrc
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	. /etc/bashrc
 fi
 
+# Cygwin, by default, does not include DOMAINNAME.
+command -v domainname > /dev/null 2>&1 && DOMAINNAME=`domainname`
+
 # Work systems only
-if [[ "ilndc.com" = "`domainname`" ]]; then
+if [[ "ilndc.com" = "$DOMAINNAME" ]]; then
 	export PATH=/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin
 	export PATH=~/bin:$PATH:/usr/ms/bin:~/ms-scripts/:/opt/rational/clearcase/bin
 	export LD_LIBRARY_PATH=$HOME/lib
