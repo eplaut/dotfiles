@@ -36,7 +36,15 @@ GIT_PS1_SHOWDIRTYSTATE=1
 GIT_PS1_SHOWUNTRACKEDFILES=1
 GIT_PS1_SHOWSTASHSTATE=1
 GIT_PS1_SHOWUPSTREAM="verbose"
-command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")'
+command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")' || GITPS1='$(__local_git_ps1 " {%s}")'
+__local_git_ps1 () 
+{ 
+	local b="$(git symbolic-ref HEAD 2>/dev/null)";
+	if [ -n "$b" ]; then
+		printf " (%s)" "${b##refs/heads/}";
+	fi
+}
+
 export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${CYAN}${GITPS1}\\\$${GRAY} "
 
 export LS_OPTIONS='--color=auto -F'
