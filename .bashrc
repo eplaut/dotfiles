@@ -7,10 +7,6 @@ fi
 # Cygwin, by default, does not include DOMAINNAME.
 command -v domainname > /dev/null 2>&1 && DOMAINNAME=`domainname`
 
-if [[ -f /mnt/Fusion/mmiller/common/bin/_bashrc ]]; then
-	source /mnt/Fusion/mmiller/common/bin/_bashrc
-fi
-
 # Work systems only
 if [[ "ilndc.com" = "$DOMAINNAME" ]]; then
 	export PATH=/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin
@@ -36,11 +32,6 @@ GREEN="\[\033[0;32m\]"
 #PROMPT_COMMAND='history -a ; hcmnt -lty ~/.bash_history.full' # ; history -a'
 PROMPT_COMMAND='history -a'
 
-GIT_PS1_SHOWDIRTYSTATE=1
-GIT_PS1_SHOWUNTRACKEDFILES=1
-GIT_PS1_SHOWSTASHSTATE=1
-GIT_PS1_SHOWUPSTREAM="verbose"
-command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")' || GITPS1='$(__local_git_ps1 " {%s}")'
 __local_git_ps1 () 
 { 
 	local b="$(git symbolic-ref HEAD 2>/dev/null)";
@@ -48,8 +39,6 @@ __local_git_ps1 ()
 		printf " (%s)" "${b##refs/heads/}";
 	fi
 }
-
-export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${CYAN}${GITPS1}\\\$${GRAY} "
 
 export LS_OPTIONS='--color=auto -F'
 export GREP_OPTIONS='--color=auto'
@@ -214,4 +203,16 @@ _loghistory() {
 export PROMPT_COMMAND='_loghistory -hyt'
 #export PROMPT_COMMAND='history -a ; history -n'
 export PROMPT_COMMAND='history -a'
+
+if [[ -f /mnt/Fusion/mmiller/common/bin/_bashrc ]]; then
+	source /mnt/Fusion/mmiller/common/bin/_bashrc
+fi
+
+command -v __git_ps1 > /dev/null 2>&1 && GITPS1='$(__git_ps1 " {%s}")' || GITPS1='$(__local_git_ps1 " {%s}")'
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWUNTRACKEDFILES=1
+GIT_PS1_SHOWSTASHSTATE=1
+GIT_PS1_SHOWUPSTREAM="verbose"
+export PS1="\`_ret=\$?; if [ \$_ret = 0 ]; then echo -en \"${GREEN}\"; else echo -en \"${RED}\"; fi; printf "%3d" \$_ret\` ${CYAN}\u@\h ${RED}\w${CYAN}${GITPS1}\\\$${GRAY} "
+
 
