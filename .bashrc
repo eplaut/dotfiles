@@ -7,6 +7,10 @@ fi
 # Cygwin, by default, does not include DOMAINNAME.
 command -v domainname > /dev/null 2>&1 && DOMAINNAME=`domainname`
 
+if [[ -f /mnt/Fusion/mmiller/common/bin/_bashrc ]]; then
+	source /mnt/Fusion/mmiller/common/bin/_bashrc
+fi
+
 # Work systems only
 if [[ "ilndc.com" = "$DOMAINNAME" ]]; then
 	export PATH=/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin
@@ -210,8 +214,4 @@ _loghistory() {
 export PROMPT_COMMAND='_loghistory -hyt'
 #export PROMPT_COMMAND='history -a ; history -n'
 export PROMPT_COMMAND='history -a'
-
-if [[ -f /mnt/Fusion/mmiller/common/bin/_bashrc ]]; then
-	source /mnt/Fusion/mmiller/common/bin/_bashrc
-fi
 
