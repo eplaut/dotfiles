@@ -42,7 +42,8 @@ __local_git_ps1 ()
 
 export LS_OPTIONS='--color=auto -F'
 export GREP_OPTIONS='--color=auto'
-export LESS='-R'
+# Pass colors, don't clear the screen, and don't use LESS if there's less than one screenful
+export LESS='-R -X -F'
 
 alias vim='vim -X'
 alias ls='ls $LS_OPTIONS'
