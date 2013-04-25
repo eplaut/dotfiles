@@ -1,3 +1,7 @@
+# For some reason, some systems forcibly set this to /etc/inputrc
+if [ -f "$HOME/.inputrc" ]; then
+	export INPUTRC=$HOME/.inputrc
+fi
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
