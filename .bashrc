@@ -15,6 +15,7 @@ command -v domainname > /dev/null 2>&1 && DOMAINNAME=`domainname`
 if [[ "ilndc.com" = "$DOMAINNAME" ]]; then
 	export PATH=/usr/local/bin:/bin:/usr/bin:/usr/X11R6/bin
 	export PATH=~/bin:$PATH:/usr/ms/bin:~/ms-scripts/:/opt/rational/clearcase/bin
+	export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 	export LD_LIBRARY_PATH=$HOME/lib
 	export CPPFLAGS="$CPPFLAGS -I$HOME/include"
 	export LDFLAGS="$LDFLAGS -L$HOME/lib"
