@@ -1,8 +1,10 @@
 # We use a fake terminal type to signal that the terminal emulator is configured with solarized colors. The proper thing to do would be to pass an environment variable directly, but the servers don't accept this
-if [ "$TERM" == "putty-256color-solarizeddark" ]
+if [[ "$TERM" == *-solarized* ]]
 then
-	export TERM="putty-256color"
-	export SOLARIZED="dark"
+	ORIGTERM="$TERM"
+	export TERM=`echo $ORIGTERM | sed "s/-solarized.*$//"`
+	export SOLARIZED=`echo $ORIGTERM | sed "s/^.*-solarized//"`
+	unset ORIGTERM
 fi
 
 # For some reason, some systems forcibly set this to /etc/inputrc
