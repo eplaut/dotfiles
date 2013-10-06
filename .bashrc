@@ -26,8 +26,8 @@ if [[ "ilndc.com" = "$DOMAINNAME" ]]; then
 	export PATH=~/bin:$PATH:/usr/ms/bin:~/ms-scripts/:/opt/rational/clearcase/bin
 	export PATH=$PATH:/usr/local/sbin:/usr/sbin:/sbin
 	export LD_LIBRARY_PATH=$HOME/lib
-	export CPPFLAGS="$CPPFLAGS -I$HOME/include"
-	export LDFLAGS="$LDFLAGS -L$HOME/lib"
+	[[ "$CPPFLAGS" == *-I$HOME/include* ]] || export CPPFLAGS="$CPPFLAGS -I$HOME/include"
+	[[ "$LDFLAGS" == *-L$HOME/lib* ]] || export LDFLAGS="$LDFLAGS -L$HOME/lib"
 fi
 
 
