@@ -244,4 +244,9 @@ if [[ -d /usr/local/tmuxifier ]]; then
        export PATH="/usr/local/tmuxifier/bin:$PATH"
        eval "$(tmuxifier init -)"
 fi
+if [[ -d $HOME/.tmuxifier ]]; then
+       export PATH="$HOME/.tmuxifier/bin:$PATH"
+       eval "$(tmuxifier init -)"
+fi
+
 
