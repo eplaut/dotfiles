@@ -61,7 +61,6 @@ export LESS='-R -X -F'
 
 alias vim='vim -X'
 alias ls='ls $LS_OPTIONS'
-alias twurl='/var/lib/gems/1.8/bin/twurl'
 
 # Check for dircolors-solarized
 DIRCOLORSDB=`dirname \`readlink -f ~/.bashrc\``/dircolors-solarized/dircolors.ansi-universal
