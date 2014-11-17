@@ -7,6 +7,12 @@ then
 	unset ORIGTERM
 fi
 
+# Support solarized mintty's
+if [[ -f ~/.minttyrc ]]
+then
+	export SOLARIZED=$(grep -i solarized .minttyrc | cut -d"=" -f2)
+fi
+
 # For some reason, some systems forcibly set this to /etc/inputrc
 if [ -f "$HOME/.inputrc" ]; then
 	export INPUTRC=$HOME/.inputrc
