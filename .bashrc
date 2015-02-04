@@ -89,6 +89,11 @@ else
 	fi
 fi
 
+if $(which brew > /dev/null)
+then
+	export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+fi
+
 # When reconnecting a tmux session, the DISPLAY variable will retain it's previous value. This fixes that.
 alias fix_display="eval export \`tmux show-environment | grep DISPLAY\`"
 
