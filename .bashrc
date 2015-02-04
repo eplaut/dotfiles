@@ -92,6 +92,9 @@ fi
 if $(which brew > /dev/null)
 then
 	export PATH=$(brew --prefix coreutils)/libexec/gnubin:$PATH
+	if [ -f $(brew --prefix)/etc/bash_completion ]; then
+		. $(brew --prefix)/etc/bash_completion
+	fi
 fi
 
 # When reconnecting a tmux session, the DISPLAY variable will retain it's previous value. This fixes that.
