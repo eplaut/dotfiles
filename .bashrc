@@ -68,7 +68,6 @@ else
 	export LS_OPTIONS="$LS_OPTIONS --color=auto"
 fi
 
-export GREP_OPTIONS='--color=auto'
 # Pass colors, don't clear the screen, and don't use LESS if there's less than one screenful
 export LESS='-R -X -F'
 
