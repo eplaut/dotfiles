@@ -1,8 +1,9 @@
 [push]
 	default = simple
 [alias]
-	push-u = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
-	amend = commit --amend --no-edit
+    push-u = "!git push --set-upstream origin \"$(git rev-parse --abbrev-ref HEAD)\""
+    amend = commit --amend --no-edit
     fixup = commit --fixup
-	undo-commit = reset --hard HEAD^
-	tree = log --graph --decorate --pretty=oneline --abbrev-commit
+    undo-commit = reset --hard HEAD^
+    tree = log --graph --decorate --pretty=oneline --abbrev-commit
+    autosquash = rebase -i --autosquash
