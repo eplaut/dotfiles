@@ -79,7 +79,7 @@ if [ "$(uname)" == "Darwin" ]
 then
 	export CLICOLOR=YES
 else
-	DIRCOLORSDB=`dirname \`$READLINK ~/.bashrc\``/dircolors-solarized/dircolors.ansi-universal
+	DIRCOLORSDB=$HOME/dotfiles/dircolors-solarized/dircolors.ansi-universal
 	if [ -f $DIRCOLORSDB ]
 	then
 		eval `dircolors $DIRCOLORSDB`
