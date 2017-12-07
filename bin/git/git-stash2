@@ -1,0 +1,12 @@
+#!/bin/bash
+
+stash_revision=$(git stash list | sed -n "s/\([^:]\):.*: \(.*${1}.*\)/\1/p")
+
+revision_count=$( (test -z "$stash_revision" || echo "$stash_revision") | wc -l)
+
+if [ $revision_count -eq 1 ] ; then
+    git stash pop $stash_revision
+else
+    echo "Error: found more than one revision for pattern '$1', please choose" >&2
+    exit 1
+fi

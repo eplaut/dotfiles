@@ -1,0 +1,48 @@
+#!/bin/bash
+
+if [ -z "$1" ]; then
+    echo "Usage: git dev <TICKET_NUMBER>"
+    exit 1
+fi
+prefix="dev/$USER/DEV"
+branch=$(git branch | sed 's/[* ]//g' | grep ${prefix}-${1}-)
+
+function checkout {
+    branch="$branch"
+    git checkout "$branch"
+}
+
+function choose_branch_menu {
+    branches=$1
+    i=1
+    echo "More than one branch found."
+    for b in $branches; do
+        echo "[$i] ${b}"
+        i=$(( i + 1 ))
+    done
+    echo "Hit <Ctrl + C> to abort"
+    echo
+}
+
+function choose_branch {
+    branches=$1
+    read -p "Please choose which one to checkout: " choise
+    echo "$branch" | head -n $choise | tail -n 1
+}
+
+branches_count=$( (test -z "$branch" || echo "$branch") | wc -l)
+case $branches_count in
+    "0")
+        echo "Unknown branch. run the following command to create one" >&2
+        echo git checkout -b ${prefix}-${1} >&2
+        exit 1
+        ;;
+    "1")
+        checkout $branch
+        ;;
+    *)
+        choose_branch_menu "$branch"
+        branch=$(choose_branch "$branch")
+        checkout "$branch"
+        ;;
+esac
