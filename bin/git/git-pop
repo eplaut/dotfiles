@@ -1,7 +1,8 @@
-#!/bin/bash
+#!/bin/bash -e
+
+test -z $1 && git stash pop || true
 
 stash_revision=$(git stash list | sed -n "s/\([^:]\):.*: \(.*${1}.*\)/\1/p")
-
 revision_count=$( (test -z "$stash_revision" || echo "$stash_revision") | wc -l)
 
 if [ $revision_count -eq 1 ] ; then
