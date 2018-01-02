@@ -1,0 +1,12 @@
+#!/bin/bash +e
+if [ -z "$1" ]; then
+    date=1
+else
+    date=$1
+fi
+
+yesterday () {
+    date -d "$1 day ago" "+%Y-%m-%d %H:%M"
+}
+
+git checkout $(git rev-list -n 1 --before="$(yesterday $1)" master)
