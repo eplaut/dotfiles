@@ -273,4 +273,4 @@ if [[ -d $HOME/.tmuxifier ]]; then
        eval "$(tmuxifier init -)"
 fi
 
-
+_alarm() {   ( \speaker-test --frequency $1 --test sine )&   pid=$!;   \sleep ${2}s;   \kill -9 $pid; }
