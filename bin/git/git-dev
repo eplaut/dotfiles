@@ -33,9 +33,13 @@ function choose_branch {
 branches_count=$( (test -z "$branch" || echo "$branch") | wc -l)
 case $branches_count in
     "0")
-        echo "Unknown branch. run the following command to create one" >&2
-        echo git checkout -b ${prefix}-${1} >&2
-        exit 1
+        if [ -z "$2" ]; then
+            echo "Unknown branch. run the following command to create one" >&2
+            echo git checkout -b ${prefix}-${1} >&2
+            exit 1
+        else
+            git checkout -b "${prefix}-${1}-${2}"
+        fi
         ;;
     "1")
         checkout $branch
