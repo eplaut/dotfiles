@@ -7,3 +7,7 @@
     undo-commit = reset --hard HEAD^
     tree = log --graph --decorate --pretty=oneline --abbrev-commit
     autosquash = rebase -i --autosquash
+[pager]
+    diff = diff-highlight | less
+    log = diff-highlight | less
+    show = diff-highlight | less
